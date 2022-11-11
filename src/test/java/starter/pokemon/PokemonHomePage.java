@@ -21,8 +21,8 @@ public class PokemonHomePage extends PageObject {
         List<WebElementFacade> pokemonGenerations = findAll(By.cssSelector(".infocard-list"));
         int y =500;
         for (WebElementFacade cardList: pokemonGenerations) {
-            js.executeScript("window.scrollTo({top: "+(y+=500)+",behavior:'smooth'})", "");
             for (WebElement pokemons: cardList.findElements(By.cssSelector(".infocard"))) {
+                js.executeScript("window.scrollTo({top: "+(y+=500)+",behavior:'smooth'})", "");
                 String name = pokemons.findElement(By.cssSelector(".ent-name")).getText();
                 String pokeId = pokemons.findElement(By.cssSelector("small:nth-of-type(1)")).getText();
                 String image = pokemons.findElement(By.cssSelector(".img-sprite")).getAttribute("src");
