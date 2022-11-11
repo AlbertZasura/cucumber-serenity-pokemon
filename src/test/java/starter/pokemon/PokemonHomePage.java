@@ -16,19 +16,19 @@ import java.util.List;
 @DefaultUrl("https://pokemondb.net/pokedex/national")
 public class PokemonHomePage extends PageObject {
     public List<Pokemon> getPokemonsData() {
-        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+//        JavascriptExecutor js = (JavascriptExecutor) getDriver();
         List<Pokemon> pokemonsList = new ArrayList<>();
         List<WebElementFacade> pokemonGenerations = findAll(By.cssSelector(".infocard-list"));
-        int y =500;
+//        int y =500;
         for (WebElementFacade cardList: pokemonGenerations) {
             for (WebElement pokemons: cardList.findElements(By.cssSelector(".infocard"))) {
-                js.executeScript("window.scrollTo({top: "+(y+=500)+",behavior:'smooth'})", "");
+//                js.executeScript("window.scrollTo({top: "+(y+=500)+",behavior:'smooth'})", "");
                 String name = pokemons.findElement(By.cssSelector(".ent-name")).getText();
                 String pokeId = pokemons.findElement(By.cssSelector("small:nth-of-type(1)")).getText();
                 String image = pokemons.findElement(By.cssSelector(".img-sprite")).getAttribute("src");
-//                if (image == null) {
-//                    image = pokemons.findElement(By.cssSelector(".img-sprite")).getAttribute("data-src");
-//                }
+                if (image == null) {
+                    image = pokemons.findElement(By.cssSelector(".img-sprite")).getAttribute("data-src");
+                }
                 List<WebElement> typeElements = pokemons.findElements(By.cssSelector(".itype"));
                 List<String> types = new ArrayList<>();
                 for (WebElement type: typeElements) {
